@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://brgfiexysd5ss"]
+
+[ext_resource type="Texture2D" uid="uid://ctv1757mkfs54" path="res://3D-Tutorial-Files-main/assets/Sprites/floor_texture.png" id="1_xxgf6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4f30"]
+albedo_color = Color(0.9647059, 0.05882353, 0.14901961, 1)
+albedo_texture = ExtResource("1_xxgf6")
+
+[sub_resource type="BoxMesh" id="BoxMesh_iuee5"]
+size = Vector3(1, 2, 180)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xduj2"]
+size = Vector3(1, 2, 180)
+
+[node name="wall" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_y4f30")
+mesh = SubResource("BoxMesh_iuee5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21250343, 0)
+shape = SubResource("BoxShape3D_xduj2")

@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://bd8j1fd3va3f4"]
+
+[ext_resource type="PackedScene" uid="uid://cin0oe8pyjl5a" path="res://gun.tscn" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://5a184k6mixmv" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://cq8rrce6gnopn" path="res://3D-Tutorial-Files-main/assets/Sprites/crosshair.png" id="3_i3pqv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_onrkg"]
+font_size = 120
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i3pqv"]
+font_size = 120
+font_color = Color(0.99607843, 0.07058824, 0.2, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="player" type="CharacterBody3D" groups=["player_group"]]
+script = ExtResource("1_onrkg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_sh265")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_4flbx")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5924394, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+current = true
+
+[node name="Gun" parent="head/Camera3D" instance=ExtResource("1_4flbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.439, -0.364, -0.771)
+
+[node name="Label" type="Label" parent="head/Camera3D"]
+offset_left = 34.0
+offset_top = 27.0
+offset_right = 278.0
+offset_bottom = 173.0
+text = "40/40"
+label_settings = SubResource("LabelSettings_onrkg")
+
+[node name="Label2" type="Label" parent="head/Camera3D"]
+offset_left = 34.0
+offset_top = 165.0
+offset_right = 355.0
+offset_bottom = 330.0
+text = "3/3"
+label_settings = SubResource("LabelSettings_i3pqv")
+
+[node name="TextureRect" type="TextureRect" parent="head/Camera3D"]
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 1024.0
+offset_bottom = 604.0
+texture = ExtResource("3_i3pqv")
